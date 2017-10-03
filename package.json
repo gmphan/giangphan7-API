@@ -21,8 +21,11 @@
   "homepage": "https://github.com/theocbuu/giangphan7-API#readme",
   "dependencies": {
     "good": "^7.3.0",
+    "good-console": "^6.4.0",
+    "good-squeeze": "^5.0.2",
     "goog": "^0.2.1",
     "hapi": "^16.6.2",
+    "mysql": "^2.14.1",
     "node-dir": "^0.1.17",
     "path": "^0.12.7",
     "require-self-ref": "^2.0.1"
