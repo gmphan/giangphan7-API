@@ -1,0 +1,30 @@
+{
+  "name": "giangphan7-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theocbuu/giangphan7-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theocbuu/giangphan7-API/issues"
+  },
+  "homepage": "https://github.com/theocbuu/giangphan7-API#readme",
+  "dependencies": {
+    "good": "^7.3.0",
+    "goog": "^0.2.1",
+    "hapi": "^16.6.2",
+    "node-dir": "^0.1.17",
+    "path": "^0.12.7",
+    "require-self-ref": "^2.0.1"
+  }
+}
