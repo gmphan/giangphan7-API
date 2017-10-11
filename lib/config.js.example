@@ -1,0 +1,14 @@
+'use strict'
+
+
+
+module.exports={
+  ocbuuDB:{
+    host: "127.0.0.1", 
+    port:3306, //use 33060 for ssh tunnel into server database
+    user: "", //usename of the mysql
+    password: "", //password of the mysql
+    database:""
+  },
+  test:'hello test'
+}

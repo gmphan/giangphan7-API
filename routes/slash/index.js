@@ -5,9 +5,9 @@ const sql=require('~/lib/sql')
 
 
 
-function sandboxHandler(req, reply){
+function slashHandler(req, reply){
   (async function(){
-    var results= await db.execute(sql.contact_me.getAll);
+    var results= await db.execute(sql.about.getAll);
     //console.log(results)
     reply(results)
   })()
@@ -17,7 +17,7 @@ function sandboxHandler(req, reply){
 module.exports=[
   {
     method:'GET',
-    path:'/sandbox',
-    handler:sandboxHandler
+    path:'/',
+    handler:slashHandler
   }
 ]
