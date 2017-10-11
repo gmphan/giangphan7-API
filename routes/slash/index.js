@@ -13,11 +13,28 @@ function slashHandler(req, reply){
   })()
 }
 
+function editAboutHandler(req,reply){
+  let idOfReqOnAbout=req.params.param;
+  (async function(){
+    var results= await db.execute(sql.about.search, idOfReqOnAbout);
+    //console.log(results)
+    reply(results)
+  })()
+  .catch((err)=>{
+    throw err
+  })
+}
+
 
 module.exports=[
   {
     method:'GET',
     path:'/',
     handler:slashHandler
+  },
+  {
+    method:'GET',
+    path:'/edit/about/{param*}',
+    handler:editAboutHandler
   }
 ]
