@@ -40,6 +40,19 @@ function handleUpdatePost(req, reply){
 }
 /**-------- End handleUpdatePost -----**/
 
+/********* handleInsertPost ************/
+function handleInsertPost(req, reply){
+  (async function(){
+    const {post_name, post_content} = req.payload;
+    var results=await db.execute(sql.post.insert, [post_name, post_content]);
+    reply();
+  })()
+  .catch((err)=>{
+    throw err;
+  })
+}
+/**------ End handleInsertPost -------**/
+
 
 module.exports=[
   {
@@ -56,5 +69,10 @@ module.exports=[
     method:'POST',
     path:'/update/post/{id}',
     handler:handleUpdatePost
+  },
+  {
+    method:'POST',
+    path:'/insert/post',
+    handler:handleInsertPost
   }
 ]
