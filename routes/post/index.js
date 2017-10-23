@@ -57,7 +57,7 @@ function handleInsertPost(req, reply){
 module.exports=[
   {
     method:'GET',
-    path:'/blog',
+    path:'/all-post',
     handler:handleBlog
   },
   {
