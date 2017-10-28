@@ -29,9 +29,10 @@ function handlePost(req, reply){
 /********** handleUpdatePost ********/
 function handleUpdatePost(req, reply){
   (async function(){
-    const {postContent} = req.payload;
-    var results=await db.execute(sql.post.update, [postContent, req.params.id])
-    reply(results);
+    const {postName, postContent} = req.payload;
+    var results=await db.execute(sql.post.update, [postName, postContent, req.params.id])
+    //console.log(results.insertId);
+    reply(results.insertId);
 
   })()
   .catch((err)=>{
