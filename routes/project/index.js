@@ -5,7 +5,7 @@ const sql=require('~/lib/sql');
 /****** handleProjects *******/
 function handleProjects(req, reply){
   (async function(){
-    var results=await db.execute(sql.projects.getAll);
+    var results=await db.execute(sql.project.getAll);
     reply(results);
   })()
   .catch((err)=>{
