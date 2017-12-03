@@ -27,11 +27,29 @@ function handleInsertPrj(req, reply){
 }
 /*****-- end handleInsertPrj ---*****/
 
+/****** handleProjId *************/
+function handleProjId(req, reply){
+  (async function(){
+    const result=await db.execute(sql.project.search, req.params.id);
+    reply(result);
+  })()
+  .catch((err)=>{
+    throw err;
+  })
+}
+
+/*** end handleProjId ************/
+
 module.exports=[
   {
     method:'GET',
     path:'/projects',
     handler:handleProjects
+  },
+  {
+    method:'GET',
+    path:'/project/{id}',
+    handler:handleProjId
   },
   {
     method:'POST',
