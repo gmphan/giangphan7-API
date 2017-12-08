@@ -10,9 +10,24 @@ function handleProjects(req, reply){
   })()
   .catch((err)=>{
     throw err;
-  })
+  });
 }
 /****-- end handleProjects --***/
+
+
+/****** handleProjId *************/
+function handleProjId(req, reply){
+  (async function(){
+    const result=await db.execute(sql.project.search, req.params.id);
+    reply(result);
+  })()
+  .catch((err)=>{
+    throw err;
+  });
+}
+
+/*** end handleProjId ************/
+
 
 /****** handleInsertPrj ********/
 function handleInsertPrj(req, reply){
@@ -23,22 +38,27 @@ function handleInsertPrj(req, reply){
   })()
   .catch((err)=>{
     throw err;
-  })
+  });
 }
 /*****-- end handleInsertPrj ---*****/
 
-/****** handleProjId *************/
-function handleProjId(req, reply){
+
+/****** handleAddTask ******************/
+function handleAddTask(req, reply){
   (async function(){
-    const result=await db.execute(sql.project.search, req.params.id);
-    reply(result);
+    const {prj_id, task_name, state, description} = req.payload;
+    //console.log('handleAddTask: '+task_name + ' '+ description+ ' ' + state + '  '+prj_id);
+    var result=await db.execute(sql.task.add, [prj_id, task_name, state, description]);
+    reply(1)
   })()
   .catch((err)=>{
     throw err;
-  })
+  });
 }
 
-/*** end handleProjId ************/
+/****** end handleAddTask ************/
+
+
 
 module.exports=[
   {
@@ -55,5 +75,10 @@ module.exports=[
     method:'POST',
     path:'/insert/project',
     handler:handleInsertPrj
+  },
+  {
+    method:'POST',
+    path:'/add/task',
+    handler:handleAddTask
   }
 ]
