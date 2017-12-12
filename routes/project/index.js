@@ -58,7 +58,17 @@ function handleAddTask(req, reply){
 
 /****** end handleAddTask ************/
 
-
+/******* handleGetTask ***********/
+function handleGetTask(req, reply){
+  (async function(){
+    const row=await db.execute(sql.task.search, req.params.prjId);
+    reply(row);
+  })()
+  .catch((err)=>{
+    throw err;
+  });
+}
+/****** end handleGetTask ********/
 
 module.exports=[
   {
@@ -80,5 +90,10 @@ module.exports=[
     method:'POST',
     path:'/add/task',
     handler:handleAddTask
+  },
+  {
+    method:'GET',
+    path:'/get/task/{prjId}',
+    handler:handleGetTask
   }
 ]
