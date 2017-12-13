@@ -59,7 +59,7 @@ function handleAddTask(req, reply){
 /****** end handleAddTask ************/
 
 /******* handleGetTask ***********/
-function handleGetTask(req, reply){
+function handleGetTaskName(req, reply){
   (async function(){
     const row=await db.execute(sql.task.search, req.params.prjId);
     reply(row);
@@ -69,6 +69,19 @@ function handleGetTask(req, reply){
   });
 }
 /****** end handleGetTask ********/
+
+/******* handleGetTskNote *************/
+function handleGetTskNote(req, reply){
+  (async function(){
+    const row=await db.execute(sql.task.search_note, req.params.tskId);
+    console.log(row);
+    reply(row);
+  })()
+  .catch((err)=>{
+    throw err;
+  });
+}
+/****** end handleGetTskNote *********/
 
 module.exports=[
   {
@@ -93,7 +106,12 @@ module.exports=[
   },
   {
     method:'GET',
-    path:'/get/task/{prjId}',
-    handler:handleGetTask
+    path:'/get/task-name/{prjId}',
+    handler:handleGetTaskName
+  },
+  {
+    method:'GET',
+    path:'/get/task-note/{tskId}',
+    handler:handleGetTskNote
   }
 ]
