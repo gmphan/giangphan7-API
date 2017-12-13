@@ -73,8 +73,8 @@ function handleGetTaskName(req, reply){
 /******* handleGetTskNote *************/
 function handleGetTskNote(req, reply){
   (async function(){
-    const row=await db.execute(sql.task.search_note, req.params.tskId);
-    console.log(row);
+    const row=await db.execute(sql.work_note.search, req.params.tskId);
+    //console.log(row);
     reply(row);
   })()
   .catch((err)=>{
@@ -82,6 +82,21 @@ function handleGetTskNote(req, reply){
   });
 }
 /****** end handleGetTskNote *********/
+
+/******** handlePostNote ***********/
+function handlePostNote(req, reply){
+  (async function(){
+      const{tskId, work_note} = req.payload;
+      //console.log(work_note + ' ' +tskId);
+      const row=await db.execute(sql.work_note.insert, [tskId, work_note]);
+      reply(1);
+    })()
+    .catch((err)=>{
+      throw err;
+    });
+}
+/******* end handlePostNote ********/
+
 
 module.exports=[
   {
@@ -113,5 +128,10 @@ module.exports=[
     method:'GET',
     path:'/get/task-note/{tskId}',
     handler:handleGetTskNote
+  },
+  {
+    method:'POST',
+    path:'/post/note',
+    handler:handlePostNote
   }
 ]
