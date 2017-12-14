@@ -49,7 +49,7 @@ function handleAddTask(req, reply){
     const {prj_id, task_name, state, description} = req.payload;
     //console.log('handleAddTask: '+task_name + ' '+ description+ ' ' + state + '  '+prj_id);
     var result=await db.execute(sql.task.add, [prj_id, task_name, state, description]);
-    reply(1)
+    reply();
   })()
   .catch((err)=>{
     throw err;
