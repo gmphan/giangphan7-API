@@ -97,6 +97,19 @@ function handlePostNote(req, reply){
 }
 /******* end handlePostNote ********/
 
+/******* handleUpdateProject *******/
+function handleUpdateProject(req, reply){
+  (async function(){
+    const{prjId, description, state, dueDate, completeDate} = req.payload;
+    //console.log(prjId + description + state + dueDate + completeDate);
+    const result=await db.execute(sql.project.update, [dueDate, state, completeDate, description, prjId]);
+    reply(1);
+  })()
+  .catch((err)=>{
+    throw err;
+  });
+}
+/******* end handleUpdateProject ***/
 
 module.exports=[
   {
@@ -133,5 +146,10 @@ module.exports=[
     method:'POST',
     path:'/post/note',
     handler:handlePostNote
+  },
+  {
+    method:'POST',
+    path:'/update/project',
+    handler:handleUpdateProject
   }
 ]
