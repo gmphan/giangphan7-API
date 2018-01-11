@@ -111,6 +111,21 @@ function handleUpdateProject(req, reply){
 }
 /******* end handleUpdateProject ***/
 
+/******** handleUpdateTaskState ***********/
+function handleUpdateTaskState(req, reply){
+  (async function(){
+    const {tskState, tskId} = req.payload
+    //console.log(tskState, tskId);
+    const result=await db.execute(sql.task.update, [tskState, tskId]);
+    reply(1);
+  })()
+  .catch((err)=>{
+    throw err;
+  });
+}
+
+/******** end handleUpdateTaskState *******/
+
 module.exports=[
   {
     method:'GET',
@@ -151,5 +166,10 @@ module.exports=[
     method:'POST',
     path:'/update/project',
     handler:handleUpdateProject
+  },
+  {
+    method:'POST',
+    path:'/update/task-state',
+    handler:handleUpdateTaskState
   }
 ]
